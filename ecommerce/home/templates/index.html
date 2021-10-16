@@ -1,14 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>İlk Test Sayfası</title>
-</head>
-<body>
-  <h1>Django Hoşgediniz</h1>
-  <h3>E ticaret yazacağım</h3>
-  <p>{{ text }}</p>
-</body>
-</html>
+{% extends "homebase.html" %}
+
+{% block title %}Index Sayfası{% endblock %}
+{% block keywords %}Index Sayfası anahtar kelimeler{% endblock %}
+{% block description %}Index Sayfası{% endblock %}
+
+{% block slider %}
+  {% include "slider.html" %}
+{% endblock %}
+{% block sidebar %}
+  {% include "sidebar.html" %}
+{% endblock %}
+<div class="container">
+
+
+
+
+{% block body %}
+  {% include "content.html" %}
+{% endblock %}
+</div>
