@@ -17,6 +17,14 @@
 
 {% block body %}
   <div class="row">
+    <div class="col-xs-12 col-md-6 col-lg-6">
+      <form>
+        <input type="text" class="form-control" placeholder="Adınız Soyadınız" />
+        <input type="text" class="form-control" placeholder="E-posta Adresiniz" />
+        <textarea rows="4" cols="50" class="form-control" placeholder="Konu" ></textarea>
+      </form>
+    </div>
+    <div class="panel panel-default col-xs-12 col-md-6 col-lg-6">
     <p>
       {{setting.contact | safe}}
     </p>
