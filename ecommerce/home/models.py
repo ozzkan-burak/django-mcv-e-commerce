@@ -1,5 +1,8 @@
 from django.db import models
+from django.db.models import fields
 from ckeditor_uploader.fields import RichTextUploadingField
+
+from django.forms import ModelForm, Textarea, TextInput
 class Setting(models.Model):
   STATUS = (
     ('True', 'Evet'),
@@ -27,6 +30,39 @@ class Setting(models.Model):
   status = models.CharField(max_length=10, choices=STATUS)
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
+  
+  def __str__(self):
+    return self.title
+  
+class ContactFormMessage(models.Model):
+  STATUS = (
+    ('New', 'Yeni'),
+    ('Read', 'Okundu'),
+    ('Closed', 'Kapandı'),
+  )
+  name = models.CharField(blank=True,max_length=20)
+  email = models.CharField(blank=True,max_length=50)
+  subject = models.CharField(blank=True,max_length=50)
+  message = models.CharField(blank=True,max_length=255)
+  status = models.CharField(max_length=10, choices=STATUS, default='New')
+  ip = models.CharField(blank=True,max_length=20)
+  note = models.CharField(blank=True,max_length=100)
+  created_at = models.DateTimeField(auto_now_add=True)
+  updated_at = models.DateTimeField(auto_now=True)
+  
+  def __str__(self):
+    return self.name
+  
+class ContactForm(models.Model):
+  class Meta:
+    model = ContactFormMessage
+    fields = ['name', 'subject', 'email', 'message', 'note', 'status']
+    widgets = {
+      'name': TextInput(attrs={'class': 'form-control', 'placeholder': 'Adınız Soyadınız'}),
+      'subject': TextInput(attrs={'class': 'form-control', 'placeholder': 'Konu'}),
+      'email': TextInput(attrs={'class': 'form-control', 'placeholder': 'E-posta'}),
+      'message': Textarea(attrs={'class': 'form-control', 'placeholder': 'Mesajınız'}),
+    }
   
   def __str__(self):
     return self.title
