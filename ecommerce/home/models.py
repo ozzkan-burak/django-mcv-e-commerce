@@ -53,10 +53,10 @@ class ContactFormMessage(models.Model):
   def __str__(self):
     return self.name
   
-class ContactForm(models.Model):
+class ContactForm(ModelForm):
   class Meta:
     model = ContactFormMessage
-    fields = ['name', 'subject', 'email', 'message', 'note', 'status']
+    fields = ['name', 'subject', 'email', 'message']
     widgets = {
       'name': TextInput(attrs={'class': 'form-control', 'placeholder': 'Adınız Soyadınız'}),
       'subject': TextInput(attrs={'class': 'form-control', 'placeholder': 'Konu'}),
