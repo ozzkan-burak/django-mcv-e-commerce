@@ -43,3 +43,12 @@ def contact(request):
   form = ContactForm()
   context = {'setting': setting, 'form': form}
   return render(request, 'contact.html', context)
+
+def catategory_products(request, id, slug):
+  category=Category.objects.all()
+  products = Product.objects.filter(category_id=id)
+  context = {
+    'products': products,
+    'category':category,
+    }
+  return render(request, 'products.html', context)

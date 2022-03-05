@@ -12,8 +12,10 @@ urlpatterns = [
     path('references/', views.references , name='references'),
     path('contact/', views.contact , name='contact'),
     path('product/', include('product.urls')),
+    path('home/', include('home.urls')),
     path('admin/', admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('category/<int:id>/<slug:slug>/', views.catategory_products , name='catategory_products'),
 ]
 
 if settings.DEBUG:
