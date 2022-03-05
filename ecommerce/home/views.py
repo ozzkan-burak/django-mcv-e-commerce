@@ -2,14 +2,15 @@ from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.http import HttpResponse
 from home.models import Setting, ContactForm,ContactFormMessage
-from product.models import Product
+from product.models import Product,Category
 
 
 # Create your views here.
 def index(request):
   setting= Setting.objects.get(pk=1)
   sliderData = Product.objects.all()[:4];
-  context = {'setting': setting, 'page': 'home', 'sliderData': sliderData}
+  category=Category.objects.all()
+  context = {'setting': setting, 'page': 'home', 'sliderData': sliderData, 'category':category}
   return render(request, 'index.html', context)
 
 def about(request):
